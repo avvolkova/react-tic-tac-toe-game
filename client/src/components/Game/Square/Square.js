@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './Square.module.css';
 
-export default function Square({ val, chooseSquare }) {
+export default function Square({ val, fillSquare }) {
   return (
-    <div className={styles.square} onClick={() => (val ? null : chooseSquare())}>{val}</div>
+    <div className={styles.square} onClick={() => (val ? null : fillSquare())}>{val}</div>
   );
 }

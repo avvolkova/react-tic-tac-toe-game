@@ -9,18 +9,15 @@ export default function GameLogic() {
   const [player, setPlayer] = useState('0');
   const [result, setResult] = useState({ winner: 'none', state: 'none' });
 
-  const chooseSquare = (square) => {
-    setBoard(board.map((val, idx) => {
+  const fillSquare = (square) => {
+    const newBoard = board.map((val, idx) => {
       if (idx === square && val === '') {
         return player;
       }
       return val;
-    }));
-    // if (player === 'X') {
-    //   setPlayer('0');
-    // } else {
-    //   setPlayer('X');
-    // }
+    });
+
+    setBoard(newBoard);
   };
 
   const restartGame = () => {
@@ -54,8 +51,9 @@ export default function GameLogic() {
         filled = false;
       }
     });
-    if (filled
-    // && result.player === 'none'
+    if (
+      filled
+      // && result.player === 'none'
     ) {
       setResult({ winner: 'No one', state: 'Tie' });
       alert(`Game is over, the winner: ${'none'}`);
@@ -63,27 +61,20 @@ export default function GameLogic() {
     }
   };
 
-  useEffect(() => {
+  const checkGameStatus = () => {
     checkWin();
     checkIfTie();
-
-    // if (result.winner !== 'none') {
-    //   checkIfTie();
-    // }
 
     if (player === 'X') {
       setPlayer('0');
     } else {
       setPlayer('X');
     }
-  }, [board]);
+  };
 
-  // useEffect(() => {
-  //   if (result.state !== 'none') {
-  //     alert(`Game is over, the winner: ${result.winner}`);
-  //   }
-  //   // restartGame();
-  // }, [result]);
+  useEffect(() => {
+    checkGameStatus();
+  }, [board]);
 
   return (
     <div className={styles.board}>
@@ -91,51 +82,69 @@ export default function GameLogic() {
         <Square
           className={styles.square}
           val={board[0]}
-          chooseSquare={() => { chooseSquare(0); }}
+          fillSquare={() => {
+            fillSquare(0);
+          }}
         />
         <Square
           className={styles.square}
           val={board[1]}
-          chooseSquare={() => { chooseSquare(1); }}
+          fillSquare={() => {
+            fillSquare(1);
+          }}
         />
         <Square
           className={styles.square}
           val={board[2]}
-          chooseSquare={() => { chooseSquare(2); }}
+          fillSquare={() => {
+            fillSquare(2);
+          }}
         />
       </div>
       <div className={styles.row}>
         <Square
           className={styles.square}
           val={board[3]}
-          chooseSquare={() => { chooseSquare(3); }}
+          fillSquare={() => {
+            fillSquare(3);
+          }}
         />
         <Square
           className={styles.square}
           val={board[4]}
-          chooseSquare={() => { chooseSquare(4); }}
+          fillSquare={() => {
+            fillSquare(4);
+          }}
         />
         <Square
           className={styles.square}
           val={board[5]}
-          chooseSquare={() => { chooseSquare(5); }}
+          fillSquare={() => {
+            fillSquare(5);
+          }}
         />
       </div>
       <div className={styles.row}>
         <Square
           className={styles.square}
           val={board[6]}
-          chooseSquare={() => { chooseSquare(6); }}
+          fillSquare={() => {
+            fillSquare(6);
+          }}
         />
         <Square
           className={styles.square}
           val={board[7]}
-          chooseSquare={() => { chooseSquare(7); }}
+          fillSquare={() => {
+            fillSquare(7);
+          }}
         />
         <Square
           className={styles.square}
           val={board[8]}
-          chooseSquare={() => { chooseSquare(8); }}
+          fillSquare={() => {
+            fillSquare(8);
+          }}
         />
       </div>
     </div>
