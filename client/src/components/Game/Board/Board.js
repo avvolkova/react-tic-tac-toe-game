@@ -9,7 +9,7 @@ export default function GameLogic() {
   const [player, setPlayer] = useState('0');
   const [result, setResult] = useState({ winner: 'none', state: 'none' });
 
-  const chooseSquare = (square) => {
+  const fillSquare = (square) => {
     const newBoard = board.map((val, idx) => {
       if (idx === square && val === '') {
         return player;
@@ -82,22 +82,22 @@ export default function GameLogic() {
         <Square
           className={styles.square}
           val={board[0]}
-          chooseSquare={() => {
-            chooseSquare(0);
+          fillSquare={() => {
+            fillSquare(0);
           }}
         />
         <Square
           className={styles.square}
           val={board[1]}
-          chooseSquare={() => {
-            chooseSquare(1);
+          fillSquare={() => {
+            fillSquare(1);
           }}
         />
         <Square
           className={styles.square}
           val={board[2]}
-          chooseSquare={() => {
-            chooseSquare(2);
+          fillSquare={() => {
+            fillSquare(2);
           }}
         />
       </div>
@@ -105,22 +105,22 @@ export default function GameLogic() {
         <Square
           className={styles.square}
           val={board[3]}
-          chooseSquare={() => {
-            chooseSquare(3);
+          fillSquare={() => {
+            fillSquare(3);
           }}
         />
         <Square
           className={styles.square}
           val={board[4]}
-          chooseSquare={() => {
-            chooseSquare(4);
+          fillSquare={() => {
+            fillSquare(4);
           }}
         />
         <Square
           className={styles.square}
           val={board[5]}
-          chooseSquare={() => {
-            chooseSquare(5);
+          fillSquare={() => {
+            fillSquare(5);
           }}
         />
       </div>
@@ -128,22 +128,22 @@ export default function GameLogic() {
         <Square
           className={styles.square}
           val={board[6]}
-          chooseSquare={() => {
-            chooseSquare(6);
+          fillSquare={() => {
+            fillSquare(6);
           }}
         />
         <Square
           className={styles.square}
           val={board[7]}
-          chooseSquare={() => {
-            chooseSquare(7);
+          fillSquare={() => {
+            fillSquare(7);
           }}
         />
         <Square
           className={styles.square}
           val={board[8]}
-          chooseSquare={() => {
-            chooseSquare(8);
+          fillSquare={() => {
+            fillSquare(8);
           }}
         />
       </div>
