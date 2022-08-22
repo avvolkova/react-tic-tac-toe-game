@@ -26,22 +26,10 @@ export default function GameLogic() {
     setResult({ winner: 'none', state: 'none' });
   };
 
-  const checkWin = () => {
-    Patterns.forEach((currPattern) => {
-      const firstPlayer = board[currPattern[0]];
-      if (firstPlayer === '') return;
-      let foundWinningPattern = true;
-      currPattern.forEach((idx) => {
-        if (board[idx] !== firstPlayer) {
-          foundWinningPattern = false;
-        }
-      });
-      if (foundWinningPattern) {
-        setResult({ winner: player, state: 'won' });
-        alert(`Game is over, the winner: ${player}`);
-        restartGame();
-      }
-    });
+  const gameOver = (winner, state) => {
+    setResult({ winner, state });
+    alert(`Game is over, the winner is: ${winner}`);
+    restartGame();
   };
 
   const checkIfTie = () => {
@@ -51,25 +39,62 @@ export default function GameLogic() {
         filled = false;
       }
     });
-    if (
-      filled
-      // && result.player === 'none'
-    ) {
-      setResult({ winner: 'No one', state: 'Tie' });
-      alert(`Game is over, the winner: ${'none'}`);
-      restartGame();
+
+    if (filled) {
+      gameOver('No one', 'Tie');
+      return true;
     }
+    return false;
   };
 
-  const checkGameStatus = () => {
-    checkWin();
-    checkIfTie();
-
+  const fillEmptySquare = () => {
     if (player === 'X') {
       setPlayer('0');
     } else {
       setPlayer('X');
     }
+  };
+
+  const checkIfWin = () => {
+    const winnerPattern = Patterns.find((currPattern) => {
+      const firstPlayer = board[currPattern[0]];
+      if (!firstPlayer) {
+        return null;
+      }
+
+      let foundWinningPattern = true;
+
+      currPattern.forEach((idx) => {
+        if (board[idx] !== firstPlayer) {
+          foundWinningPattern = false;
+        }
+      });
+
+      if (foundWinningPattern) {
+        return currPattern;
+      }
+      return null;
+    });
+
+    if (winnerPattern) {
+      gameOver(player, 'won');
+      return true;
+    }
+    return false;
+  };
+
+  const checkGameStatus = () => {
+    const isWin = checkIfWin();
+    if (isWin) {
+      return;
+    }
+
+    const isTie = checkIfTie();
+    if (isTie) {
+      return;
+    }
+
+    fillEmptySquare();
   };
 
   useEffect(() => {
