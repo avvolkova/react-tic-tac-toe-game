@@ -51,10 +51,7 @@ export default function GameLogic() {
         filled = false;
       }
     });
-    if (
-      filled
-      // && result.player === 'none'
-    ) {
+    if (filled) {
       setResult({ winner: 'No one', state: 'Tie' });
       alert(`Game is over, the winner: ${'none'}`);
       restartGame();
