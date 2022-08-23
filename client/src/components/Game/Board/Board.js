@@ -15,7 +15,10 @@ export default function GameLogic() {
 
   const nameFirst = useSelector((state) => state.playerfirst.playerFirst);
   const nameSecond = useSelector((state) => state.playersecond.playerSecond);
-  const [choise, setChoise] = useState(nameFirst);
+  const playerNames = {
+    X: nameFirst,
+    0: nameSecond,
+  };
 
   const fillSquare = (square) => {
     const newBoard = board.map((val, idx) => {
@@ -58,10 +61,8 @@ export default function GameLogic() {
   const fillEmptySquare = () => {
     if (player === 'X') {
       setPlayer('0');
-      setChoise(nameSecond);
     } else {
       setPlayer('X');
-      setChoise(nameFirst);
     }
   };
 
@@ -111,13 +112,20 @@ export default function GameLogic() {
     checkGameStatus();
   }, [board]);
 
+  useEffect(() => {
+  }, [nameFirst, nameSecond]);
+
   return (
     <div className={styles.game}>
-      <div className={styles.game}>
+      <div className={styles.step}>
         Твой ход:
+
+        {playerNames[player]}
         {' '}
-        {choise}
-        {' '}
+        -
+        {'  '}
+        {player}
+
       </div>
       <div className={styles.board}>
         <div className={styles.row}>
