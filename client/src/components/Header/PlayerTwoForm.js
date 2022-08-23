@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setPlayerSecondAC } from '../../redux/actions/PlayersAction';
+import styles from './PlayersForm.module.css';
 
 export default function PlayeTwoForm() {
   const dispatch = useDispatch();
@@ -10,32 +11,37 @@ export default function PlayeTwoForm() {
     dispatch(setPlayerSecondAC(e.target.namesecond.value));
   };
   return (
-    <div>
+    <div className={styles.playerform}>
       <div>
-        please fill the name of the second player
+        Fill the name of the second player
       </div>
       <form
         name="playersecondform"
         onSubmit={submitHandler}
       >
         <input
+          className={styles.input}
           name="namesecond"
         //   autoComplete="user-name"
           placeholder={nameSecond}
         //   onChange={(e) => e.target.namesecond.value}
         />
-        <button
-          type="submit"
-        >
-          Remember me
-        </button>
-      </form>
-      <div className="mini_container">
-        <div className="desc">
-          Player 2:
-          {nameSecond}
+        <div className={styles.line}>
+          <button
+            className={styles.button}
+            type="submit"
+          >
+            Remember
+          </button>
+          <div className="mini_container">
+            <div className={styles.desc}>
+              Player 2:
+              {' '}
+              {nameSecond}
+            </div>
+          </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 }

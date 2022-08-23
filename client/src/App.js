@@ -2,7 +2,7 @@ import {
   Routes, Route, Navigate,
 } from 'react-router-dom';
 import './App.css';
-import PlayeTwoForm from './components/Header/PlayeTwoForm';
+import PlayerTwoForm from './components/Header/PlayerTwoForm';
 import PlayerOneForm from './components/Header/PlayerOneForm';
 import GameLogic from './components/Game/Board/Board';
 
@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <div className="playersforms">
         <PlayerOneForm />
-        <PlayeTwoForm />
+        <PlayerTwoForm />
       </div>
       <div>
         <GameLogic />

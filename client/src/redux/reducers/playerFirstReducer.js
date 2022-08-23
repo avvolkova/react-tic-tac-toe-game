@@ -1,6 +1,6 @@
 import { SET_PLAYERFIRST } from '../types/playersTypes';
 
-const initilState = { playerFirst: 'Игрок 1' };
+const initilState = { playerFirst: 'Player 1' };
 
 // eslint-disable-next-line default-param-last
 const playerFirstReducer = (state = initilState, action) => {

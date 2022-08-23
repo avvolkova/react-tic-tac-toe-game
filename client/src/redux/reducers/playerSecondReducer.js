@@ -1,6 +1,6 @@
 import { SET_PLAYERSECOND } from '../types/playersTypes';
 
-const initialState = { playerSecond: 'Игрок 2' };
+const initialState = { playerSecond: 'Player 2' };
 // eslint-disable-next-line default-param-last
 const playerSecondReducer = (state = initialState, action) => {
   const { type, payload } = action;

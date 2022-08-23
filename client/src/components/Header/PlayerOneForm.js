@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setPlayerOneAC } from '../../redux/actions/PlayersAction';
+import styles from './PlayersForm.module.css';
 
 export default function PlayerOneForm() {
   // cоздаем dispatch
@@ -20,15 +21,16 @@ export default function PlayerOneForm() {
     console.log(e.target.name.value);
   };
   return (
-    <div>
+    <div className={styles.playerform}>
       <div>
-        please fill the name of the first player
+        Fill the name of the first player
       </div>
       <form
         name="playerfirstform"
         onSubmit={submitHandler}
       >
         <input
+          className={styles.input}
           name="namefirst"
         //   autoComplete="user-name"
           placeholder={nameFirst}
@@ -36,18 +38,22 @@ export default function PlayerOneForm() {
         //   value={nameFirst}
         //   onChange={(e) => e.target.namefirst.value}
         />
-        <button
-          type="submit"
-        >
-          Remember me
-        </button>
-      </form>
-      <div className="mini_container">
-        <div className="desc">
-          Player 1:
-          {nameFirst}
+        <div className={styles.line}>
+          <button
+            className={styles.button}
+            type="submit"
+          >
+            Remember
+          </button>
+          <div className="mini_container">
+            <div className={styles.desc}>
+              Player 1:
+              {' '}
+              {nameFirst}
+            </div>
+          </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 }
