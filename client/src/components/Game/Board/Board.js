@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './Board.module.css';
 import Square from '../Square/Square';
 import { Patterns } from '../Patterns/Patterns';
-import { setPlayerOneAC } from '../../../redux/actions/PlayersAction';
+
+function Modal({ active, setActive }) {
+  return active && <div onClick={() => setActive(false)}>MODAL</div>;
+}
 
 export default function GameLogic() {
   const [board, setBoard] = useState(['', '', '', '', '', '', '', '', '']);
   const [player, setPlayer] = useState('0');
   const [result, setResult] = useState({ winner: 'none', state: 'none' });
-  const [modalActive, setModalActive] = useState(true);
+  const [modalActive, setModalActive] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -39,8 +42,9 @@ export default function GameLogic() {
 
   const gameOver = (winner, state) => {
     setResult({ winner, state });
-    alert(`Game is over, the winner is: ${winner}`);
-    restartGame();
+    // alert(`Game is over, the winner is: ${winner}`);
+    setModalActive(true);
+    // restartGame();
   };
 
   const checkIfTie = () => {
@@ -198,6 +202,7 @@ export default function GameLogic() {
           />
         </div>
       </div>
+      <Modal active={modalActive} setActive={setModalActive} />
     </div>
   );
 }
